@@ -14,7 +14,7 @@ var svg = d3.select("#middle1")
 
 // Parse the Data
 //d3.csv("data/total.csv", function(data) {
-d3.csv("https://raw.githubusercontent.com/bachoti2/income-dist/master/total.csv", function(data) {	
+d3.csv("https://raw.githubusercontent.com/bachoti2/income-dist/master/data/total.csv", function(data) {	
   var subgroups = data.columns.slice(1)
 
   // List of groups
