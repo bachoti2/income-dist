@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Income distribution</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 0px;
+  text-align: center;
+  font-size: 35px;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 500px; /*Should be removed. Only for demonstration */
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/*.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #6F257F;
+  padding: 14px;
+  text-align: center;
+}*/
+
+.toolTip {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	position: absolute;
+	display: none;
+	width: auto;
+	height: auto;
+	background: none repeat scroll 0 0 white;
+	border: 0 none;
+	border-radius: 8px 8px 8px 8px;
+	box-shadow: -3px 3px 15px #888888;
+	color: black;
+	font: 12px sans-serif;
+	padding: 5px;
+	text-align: center;
+}
+
+.annotation-note-title, text.title {
+  font-weight: bold;
+}
+
+text.title {
+  font-size: 1.2em;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  width: 960px;
+  height: 500px;
+  position: relative;
+}
+
+path.slice{
+	stroke-width:2px;
+}
+
+polyline{
+	opacity: .3;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+}
+
+select {
+	display: block;
+}
+</style>
+</head>
+<body>
+
+<h2>Income groups, and distribution by gender</h2>
+<p>Based on a sample dataset of "Census Income" collected in 1994, we explore how gender is distributed across income groups. The groups are classified by whether income is greater than or less than $50K/yr. <br/><br>Data used from <a href="http://archive.ics.uci.edu/ml/datasets/Adult">Adult dataset</a>.</br></p>
+
+<div class="pagination">
+  <a href="index.html" id="page1">Gender</a>
+  <a href="occupation.html" id="page2">Occupation</a>
+  <a href="status.html" id="page3">Marital status</a>
+  <a href="hours.html" id="page4" class="active">Age vs Hours per week</a>
+</div>
+
+<div class="row">
+  <div class="column side" style="background-color:#ccc;">
+	<b>Women in the lower income group tend to work longer hours</b>
+	<p>Women tend to work more hours per week in most occuptions in the lower income group. But men tend to work more in the higher income group.
+	</p>
+  </div>
+  <div class="column middle" id="middle1">
+	  <div id="choice1">
+		<input type="radio" id="radio_inc_less" checked="checked"
+		 name="contact" value="radio_inc_less" onclick="incomeChanged()">
+		<label for="contactChoice1">Income < 50k</label>
+
+		<input type="radio" id="radio_inc_less"
+		 name="contact" value="radio_inc_more" onclick="incomeChanged()">
+		<label for="contactChoice2">Income > 50k</label>
+	  </div>
+  </div>
+</div>
+	<script src="https://d3js.org/d3.v4.js"></script>
+	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+	<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+	
+	<script src="js/scatter.js" defer></script>
+</body>
+</html>
